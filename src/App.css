@@ -2,3 +2,65 @@
   width: 100%;
   height: 100vh;
 }
+
+/* Estilos personalizados para a landing page */
+
+/* Gradientes e fundos */
+.hero-gradient {
+  background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+}
+
+.feature-icon {
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1);
+}
+
+/* Efeitos de hover para botões e links */
+.nav-link {
+  position: relative;
+}
+
+.nav-link:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #1d4ed8;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+
+/* Estilos para seções */
+.section {
+  scroll-margin-top: 80px;
+}
+
+/* Estilo para o componente df-messenger */
+df-messenger {
+  --df-messenger-button-border-radius: 30px;
+  --df-messenger-chat-border-radius: 20px;
+  --df-messenger-message-border-radius: 20px;
+  --df-messenger-button-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Remover borda da bolha do chat quando expandido */
+df-messenger-chat {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+/* Esconder mensageiro em dispositivos muito pequenos */
+@media (max-width: 350px) {
+  df-messenger-chat-bubble {
+    display: none !important;
+  }
+}
