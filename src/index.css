@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos para o Dialogflow Messenger */
+df-messenger {
+  --df-messenger-bot-message: #e6f7ff;
+  --df-messenger-button-titlebar-color: #0066cc;
+  --df-messenger-chat-background-color: #fafafa;
+  --df-messenger-font-color: #333333;
+  --df-messenger-send-icon: #0066cc;
+  --df-messenger-user-message: #eef5e4;
+  --df-messenger-minimized-chat-close-icon-color: #fff;
+}
