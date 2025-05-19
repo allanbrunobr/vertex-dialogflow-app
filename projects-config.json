@@ -1,0 +1,88 @@
+{
+  "projects": [
+    {
+      "name": "lenscope",
+      "projectId": "prj-bootcamp-lenscope-01",
+      "agentId": "4a47f9e6-0730-47d4-a6cb-a26fb40d2a33",
+      "searchConfigId": "b55c8e6e-3fed-4f94-bdb0-4004802ed184",
+      "location": "pt-br"
+    },
+    {
+      "name": "idworks",
+      "projectId": "prj-bootcamp-idworks-01",
+      "agentId": "bbac8e48-19b1-4f21-bd50-fec9a1e2421e",
+      "searchConfigId": "ce7a37ac-e68b-464c-9996-047971f62132",
+      "location": "pt-br"
+    },
+    {
+        "name": "cecyber",
+        "projectId": "prj-bootcamp-prd-01",
+        "agentId": "413962ac-89ab-420f-812f-cddfe3224a0f",
+        "searchConfigId": "a3d66402-86ea-415a-a49e-e1141a8522fe",
+        "location": "pt-br"
+      },
+    {
+      "name": "futuriza",
+      "projectId": "prj-bootcamp-futuriza-01",
+      "agentId": "7e582650-4901-4515-a242-12c7cd845096",
+      "searchConfigId": "04b21714-238c-445d-8386-af836a47561a",
+      "location": "pt-br"
+    },
+    {
+      "name": "therarocks",
+      "projectId": "prj-bootcamp-therarocks-01",
+      "agentId": "3a145c75-c94f-4dbc-bee5-eee5e1db22e4",
+      "searchConfigId": "85ee8913-373f-42f5-a7d6-d32dbc679b95",
+      "location": "pt-br"
+    },
+    {
+      "name": "benedo",
+      "projectId": "prj-bootcamp-benedo-02",
+      "agentId": "35cc48d9-3484-454c-9138-e81ea6b36330",
+      "searchConfigId": "0124d2e5-efa0-4765-9c37-4866501bb010",
+      "location": "pt-br"
+    },
+    {
+      "name": "conectatech",
+      "projectId": "prj-bootcamp-conectatech-01",
+      "agentId": "0cf2805c-e97f-4017-8932-008f25b180d0",
+      "searchConfigId": "5bd671cd-8182-43cd-a2d1-a16dadb14431",
+      "location": "pt-br"
+    },
+    {
+      "name": "captei",
+      "projectId": "prj-bootcamp-captei-01",
+      "agentId": "06bf8e48-5bf0-42d2-b3ef-f35dd3e2cf4b",
+      "searchConfigId": "a2dbe612-f0a3-4298-8fe5-abb8f87bcba6",
+      "location": "pt-br"
+    },
+    {
+      "name": "bemtevi",
+      "projectId": "prj-bootcamp-bemtevi-01",
+      "agentId": "9e03fbe6-9324-47e8-a455-171b53cbb392",
+      "searchConfigId": "c07eb899-94b7-42d8-a5eb-791012cee910",
+      "location": "pt-br"
+    },
+    {
+      "name": "riverdata",
+      "projectId": "prj-bootcamp-riverdata-01",
+      "agentId": "5dd43de4-cd9a-478c-ad6f-27055bbc4b58",
+      "searchConfigId": "8cb78f7a-0e3a-4f1f-a5ae-5d963f14c316",
+      "location": "pt-br"
+    },
+    {
+      "name": "tatoh",
+      "projectId": "prj-bootcamp-tatoh-01",
+      "agentId": "524e115e-02e8-41a3-bea0-c5de0209dd70",
+      "searchConfigId": "d5468dd8-0cd4-4afa-b9ae-470588513e51",
+      "location": "pt-br"
+    },
+    {
+      "name": "observatorio",
+      "projectId": "prj-bootcamp-observatorio-01",
+      "agentId": "c50157a7-391d-4758-9a4e-509cd8ae8054",
+      "searchConfigId": "05586615-7c0c-4dd7-a393-c342f52f18a1",
+      "location": "pt-br"
+    }
+  ]
+} 

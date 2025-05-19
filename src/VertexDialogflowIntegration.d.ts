@@ -1,4 +1,6 @@
-declare module './VertexDialogflowIntegration' {
-    const VertexDialogflowIntegration: React.FC;
-    export default VertexDialogflowIntegration;
-} 
+declare namespace JSX {
+  interface IntrinsicElements {
+    'df-messenger': any;
+    'df-messenger-chat-bubble': any;
+  }
+}
