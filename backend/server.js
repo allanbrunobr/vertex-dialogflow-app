@@ -1,10 +1,13 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const { GoogleAuth } = require('google-auth-library');
-const fetch = require('node-fetch');
-require('dotenv').config();
+import express from 'express';
+import bodyParser from 'body-parser';
+import { GoogleAuth } from 'google-auth-library';
+import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+import cors from 'cors';
+dotenv.config();
 
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());

@@ -38,6 +38,7 @@ import {
   ExpandMore,
 } from '@mui/icons-material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from 'recharts';
 
 const drawerWidth = 290;
 
@@ -107,6 +108,7 @@ const sidebarGroups = [
 export default function App() {
   const [expanded, setExpanded] = React.useState<string | false>('Criação');
   const [activeAnchor, setActiveAnchor] = React.useState<string>('parceiros');
+  const [predictionResult, setPredictionResult] = React.useState<any>(null);
 
   const handleAccordionChange = (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false);
@@ -115,6 +117,20 @@ export default function App() {
   const handleMenuItemClick = (anchor: string) => {
     setActiveAnchor(anchor);
   };
+
+  const pieData = React.useMemo(() => {
+    if (!predictionResult || !predictionResult.predictions) return [];
+    let sim = 0, nao = 0;
+    predictionResult.predictions.forEach((pred: any) => {
+      const isAprovado = pred.scores && pred.scores[1] > pred.scores[0];
+      if (isAprovado) sim++;
+      else nao++;
+    });
+    return [
+      { name: 'Sim', value: sim },
+      { name: 'Não', value: nao }
+    ];
+  }, [predictionResult]);
 
   return (
     <ThemeProvider theme={firebaseTheme}>
@@ -310,7 +326,7 @@ export default function App() {
                           body: JSON.stringify(data),
                         });
                         const prediction = await response.json();
-                        console.log(prediction);
+                        setPredictionResult(prediction);
                       } catch (error) {
                         alert("Erro ao ler o JSON. Verifique o formato.");
                       }
@@ -321,6 +337,71 @@ export default function App() {
               </Button>
             </Box>
           </Box>
+          {predictionResult && predictionResult.predictions && (
+            <Box sx={{ mt: 4, bgcolor: 'background.paper', p: 3, borderRadius: 3, boxShadow: 1 }}>
+              <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>
+                Resultados da Predição
+              </Typography>
+              <Box sx={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 320 }}>
+                  <thead>
+                    <tr>
+                      <th style={{ padding: '4px 6px', borderBottom: '1px solid #eee', textAlign: 'center', minWidth: 28 }}>#</th>
+                      <th style={{ padding: '4px 6px', borderBottom: '1px solid #eee', textAlign: 'center', minWidth: 80 }}>Seguro</th>
+                      <th style={{ padding: '4px 6px', borderBottom: '1px solid #eee', textAlign: 'center', minWidth: 110 }}>Probabilidade de Aprovação (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {predictionResult.predictions.map((pred: any, idx: number) => {
+                      const isAprovado = pred.scores && pred.scores[1] > pred.scores[0];
+                      const prob = pred.scores ? pred.scores[1] : null;
+                      return (
+                        <tr key={idx}>
+                          <td style={{ padding: '4px 6px', borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>
+                            <Typography variant="body2">{idx + 1}</Typography>
+                          </td>
+                          <td style={{ padding: '4px 6px', borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>
+                            <Typography variant="body2" sx={{ fontWeight: 600, color: isAprovado ? 'success.main' : 'error.main' }}>
+                              {isAprovado ? 'Sim' : 'Não'}
+                            </Typography>
+                          </td>
+                          <td style={{ padding: '4px 6px', borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>
+                            <Typography variant="body2">
+                              {prob !== null ? (prob * 100).toFixed(2) + '%' : '-'}
+                            </Typography>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </Box>
+              {pieData.length > 0 && (
+                <Box sx={{ mt: 3, mb: 2, width: '100%', maxWidth: 320, mx: 'auto' }}>
+                  <Typography variant="subtitle1" sx={{ textAlign: 'center', mb: 1 }}>
+                    Distribuição das Predições
+                  </Typography>
+                  <ResponsiveContainer width="100%" height={220}>
+                    <PieChart>
+                      <Pie
+                        data={pieData}
+                        dataKey="value"
+                        nameKey="name"
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={70}
+                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                      >
+                        <Cell key="sim" fill="#43a047" />
+                        <Cell key="nao" fill="#e53935" />
+                      </Pie>
+                      <Legend verticalAlign="bottom" height={36} />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </Box>
+              )}
+            </Box>
+          )}
           {/* Card de Assistente Virtual */}
           <df-messenger
             project-id="prj-bootcamp-therarocks-01"
