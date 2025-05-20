@@ -1,20 +1,11 @@
 {
   "projects": {
-    "default": "prj-bootcamp-observatorio-01"
+    "default": "prj-bootcamp-therarocks-01"
   },
   "targets": {
-    "prj-bootcamp-observatorio-01": {
-      "hosting": {
-        "autoxpress-observatorio": [
-          "autoxpress-observatorio"
-        ]
-      }
-    },
     "prj-bootcamp-therarocks-01": {
       "hosting": {
-        "autoxpress-observatorio": [
-          "autoxpress-observatorio"
-        ]
+        "autoxpress-therarocks": ["autoxpress-therarocks"]
       }
     }
   },

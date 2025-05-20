@@ -135,8 +135,8 @@ const VertexDialogflowIntegration: React.FC = () => {
         {/* Área do chat */}
         <div className="relative" style={{ height: "400px" }}>
           <df-messenger
-            project-id="prj-bootcamp-observatorio-01"
-            agent-id="c50157a7-391d-4758-9a4e-509cd8ae8054"
+            project-id="prj-bootcamp-therarocks-01"
+            agent-id="3a145c75-c94f-4dbc-bee5-eee5e1db22e4"
             language-code="pt-br"
             max-query-length="-1"
           >
