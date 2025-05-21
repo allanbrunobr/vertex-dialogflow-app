@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -14,7 +13,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -22,7 +20,6 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import IconButton from '@mui/material/IconButton';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import GroupIcon from '@mui/icons-material/Group';
-import StorefrontIcon from '@mui/icons-material/Storefront';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import {
   People,
@@ -33,9 +30,7 @@ import {
   PlayArrow,
   Assessment,
   BarChart,
-  Chat,
-  ExpandLess,
-  ExpandMore,
+  Chat
 } from '@mui/icons-material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from 'recharts';
@@ -256,7 +251,6 @@ export default function App() {
               </ul>
               <Button
                 variant="contained"
-                color="secondary"
                 startIcon={<HandshakeIcon />}
                 sx={{ mt: 1, borderRadius: 3, fontWeight: 600, textTransform: 'none', px: 3, py: 1 }}
               >

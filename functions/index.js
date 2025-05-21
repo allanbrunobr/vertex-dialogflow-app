@@ -1,15 +1,13 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import { GoogleAuth } from 'google-auth-library';
-import fetch from 'node-fetch';
-import dotenv from 'dotenv';
-import cors from 'cors';
-dotenv.config();
+const functions = require('firebase-functions');
+const express = require('express');
+const bodyParser = require('body-parser');
+const { GoogleAuth } = require('google-auth-library');
+const fetch = require('node-fetch');
+const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
-const PORT = process.env.PORT || 3001;
-
 app.use(bodyParser.json());
 
 const LOCATION = 'us-central1';
@@ -29,6 +27,9 @@ app.post('/predict', async (req, res) => {
 
     const url = `https://${LOCATION}-aiplatform.googleapis.com/v1/projects/${projectNumber}/locations/${LOCATION}/endpoints/${endpointId}:predict`;
 
+    console.log('URL Vertex AI:', url);
+    console.log('Payload:', payload);
+
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -38,6 +39,11 @@ app.post('/predict', async (req, res) => {
       body: JSON.stringify(payload), // envie só o payload relevante para o modelo
     });
 
+    if (!response.ok) {
+      const errorText = await response.text();
+      return res.status(response.status).json({ error: errorText });
+    }
+
     const result = await response.json();
     res.json(result);
   } catch (error) {
@@ -46,6 +52,5 @@ app.post('/predict', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-}); 
+// Exporta como função do Firebase
+exports.api = functions.https.onRequest(app); 

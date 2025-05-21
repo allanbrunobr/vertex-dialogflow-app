@@ -15,6 +15,14 @@ function formatProjectName(projectName) {
   return projectName.replace(/[^a-zA-Z0-9-]/g, '-').toLowerCase();
 }
 
+// Função para gerar o .env do frontend
+function writeFrontendEnv(project) {
+  const envContent = `VITE_PROJECT_NUMBER=${project.projectNumber}
+VITE_ENDPOINT_ID=${project.endpointId}
+`;
+  fs.writeFileSync(path.join(__dirname, '.env'), envContent);
+}
+
 // Função para atualizar o arquivo index.html
 function updateIndexHtml(project) {
   const indexPath = path.join(__dirname, 'index.html');
@@ -131,6 +139,9 @@ async function deployProject(project) {
     console.log(`\n🚀 Iniciando deploy para o projeto: ${project.name}`);
     console.log(`🌐 URL de destino: https://autoxpress-${formatProjectName(project.name)}.web.app`);
     
+    // Gera o .env do frontend para este projeto
+    writeFrontendEnv(project);
+
     // Atualiza os arquivos de configuração
     updateIndexHtml(project);
     updateVertexDialogflow(project);
@@ -145,9 +156,16 @@ async function deployProject(project) {
 
     // Faz o build do projeto
     console.log('📦 Fazendo build do projeto...');
-    execSync('npm run build', { stdio: 'inherit' });
+    execSync('npm run build', { 
+      stdio: 'inherit',
+      env: { ...process.env, PATH: process.env.PATH }
+    });
 
-    // Faz o deploy
+    // Faz o deploy do backend (functions)
+    console.log('🚀 Fazendo deploy das functions...');
+    execSync('firebase deploy --only functions', { stdio: 'inherit' });
+
+    // Faz o deploy do frontend
     console.log('🚀 Fazendo deploy...');
     execSync(`firebase deploy --only hosting:${targetName}`, { stdio: 'inherit' });
 
@@ -155,6 +173,7 @@ async function deployProject(project) {
     console.log(`🔗 URL: https://autoxpress-${formatProjectName(project.name)}.web.app`);
   } catch (error) {
     console.error(`❌ Erro ao fazer deploy para ${project.name}:`, error.message);
+    throw error; // Re-throw to stop the deployment process
   }
 }
 
